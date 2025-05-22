@@ -18,9 +18,10 @@ int	eating(t_philo *philo)
 	int right;
 	
 	left = philo->id_philos;
-	//printf("fork id : %d\n", left);
+	//printf("id %d: fork id : %d\n", philo->id_philos, left);
 	right = (philo->id_philos + 1) % philo->param->nb_philos;
 	//printf("right fork : %d\n", right);
+	//printf("time meal avec sleep : %ld\n", getime(philo->param->start));
 	if (philo->id_philos % 2 == 0)
 	{
 		if (take_fork(philo, left))
@@ -35,8 +36,9 @@ int	eating(t_philo *philo)
 		if (take_fork(philo, left))
 			return (1);
 	}
-	//print(philo, "is eating");
-	philo->time_meal = getime(philo->param->start);
+	print(philo, "is eating");
+	philo->moment_meal = philo->moment_meal + philo->time_meal;
+	philo->time_meal = getime(philo->param->start) - philo->moment_meal;
 	//printf("time meal avec sleep : %ld\n", getime(philo->param->start));
 	if (sleep_and_eat(philo, getime(philo->param->start)))
 		return (1);

@@ -27,6 +27,7 @@ typedef struct	s_philo
 {
 	int				id_philos;				//ok
 	time_t			time_meal;				//ok
+	time_t			moment_meal;			//ok
 	pthread_t		thread;					//ok
 	int				fork;					//ok
 	pthread_mutex_t	mutex_fork;				//ok

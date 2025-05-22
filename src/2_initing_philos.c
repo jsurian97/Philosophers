@@ -28,6 +28,7 @@ int	initing_philos(t_param *param)
 	{
 		param->philos[i].id_philos = i;
 		param->philos[i].time_meal = 0;
+		param->philos[i].moment_meal = 0;
 		param->philos[i].fork = 0;
 		if (pthread_mutex_init(&param->philos[i].mutex_fork, NULL))
 			return (1);
