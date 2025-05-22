@@ -48,6 +48,6 @@ int	main(int argc, char **argv)
 	if (initing_philos(&param))		//liberer les mutex initialiser
 		return (0);
 	if (starting(&param))
-		return (0);
-	return (finishing(&param));
+		return (finishing(&param.philos[0]));
+	return (finishing(&param.philos[0]));
 }

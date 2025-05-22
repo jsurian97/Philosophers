@@ -45,7 +45,7 @@ int	take_fork(t_philo *philo, int i_forks)
 			break;
 		}
 		pthread_mutex_unlock(&philo->param->philos[i_forks].mutex_fork);
-		usleep(50);
+		usleep(200);
 	}
 	return (0);
 }
@@ -64,7 +64,7 @@ int	sleep_and_eat(t_philo *philo, time_t start_action)
 	{
 		if (check_death(philo))
 			return (1);
-		usleep(50);
+		usleep(200);
 	}
 	return (0);
 }

@@ -34,10 +34,10 @@ int	print(t_philo *philo, char *message)
 {
 	pthread_mutex_lock(&philo->param->mutex_print);
 	if (philo->param->dying == -1)
-		printf("%ld %d %s\n", getime(philo->param->start) / 1000,
+		printf("%ld %d %s\n", getime(philo->param->start),
 			philo->id_philos, message);
 	else
-		printf("%ld %d %s\n", getime(philo->param->start) / 1000,
+		printf("%ld %d %s\n", getime(philo->param->start),
 			philo->param->dying, message);
 	pthread_mutex_unlock(&philo->param->mutex_print);
 	return (0);
