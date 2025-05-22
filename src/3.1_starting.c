@@ -14,7 +14,10 @@
 
 int	check_death(t_philo *philo)
 {
-	if (philo->time_meal > philo->param->t_eat)
+	//printf("getime meal : %ld\n", getime(philo->time_meal));
+	//printf("time meal death : %ld\n", philo->time_meal);
+	//printf("t_died : %ld\n", philo->param->t_died);
+	if (getime(philo->time_meal) > philo->param->t_died)
 	{
 		pthread_mutex_lock(&philo->param->mutex_dying);
 		philo->param->dying = philo->id_philos;
