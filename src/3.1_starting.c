@@ -14,19 +14,20 @@
 
 int	check_death(t_philo *philo)
 {
-	if (getime(philo->param->start) - philo->moment_meal > philo->param->t_died)
+	if (getime(philo->param->start) - philo->start_meal > philo->param->t_died)
 	{
 		pthread_mutex_lock(&philo->param->mutex_dying);
 		philo->param->dying = philo->id_philos;
 		pthread_mutex_unlock(&philo->param->mutex_dying);
-	}	
+	}
 	pthread_mutex_lock(&philo->param->mutex_dying);
-	if (philo->param->dying != -1)// || philo->param->dying == -2)
+	if (philo->param->dying != -1 || philo->param->dying == -2)
 	{
-		//if (philo->param->dying != -2)
+		if (philo->param->dying != -2)
+		{
 			print(philo, "is dead");
-		//else
-			//philo->param->dying = -2;
+			philo->param->dying = -2;
+		}
 		pthread_mutex_unlock(&philo->param->mutex_dying);
 		return (1);
 	}
@@ -46,10 +47,10 @@ int	take_fork(t_philo *philo, int i_forks)
 			philo->param->philos[i_forks].fork = 1;
 			print(philo, "has taken a fork");
 			pthread_mutex_unlock(&philo->param->philos[i_forks].mutex_fork);
-			break;
+			break ;
 		}
 		pthread_mutex_unlock(&philo->param->philos[i_forks].mutex_fork);
-		usleep(200);
+		usleep(100);
 	}
 	return (0);
 }
@@ -68,7 +69,7 @@ int	sleep_and_eat(t_philo *philo, time_t start_action)
 	{
 		if (check_death(philo))
 			return (1);
-		usleep(200);
+		usleep(100);
 	}
 	return (0);
 }

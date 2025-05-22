@@ -18,7 +18,7 @@ int	philosynchro(t_philo *philo)
 	{
 		usleep(10);
 	}
-	philo->time_meal = getime(philo->param->start);	
+	philo->start_meal = getime(philo->param->start);
 	return (0);
 }
 

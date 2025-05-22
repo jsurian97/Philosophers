@@ -75,8 +75,8 @@ int	filling(t_param *param, int argc, char **argv)
 	if (argc == 6)
 		param->nboftimes = ft_atoi(securecheck(argv[5]));
 	else
-		param->nboftimes = 0;
-	param->start =  getime(0) + 10;
+		param->nboftimes = -2;
+	param->start = getime(0) + 10;
 	return (testing(param));
 }
 
