@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   3.0_starting.c                                     :+:      :+:    :+:   */
+/*   3.0_starting.c                                      :+:    :+:           */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsurian <jsurian@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:04:28 by jsurian           #+#    #+#             */
-/*   Updated: 2025/05/08 18:05:41 by jsurian          ###   ########.fr       */
+/*   Updated: 2025/05/23 15:20:19 by jsurian        ########   odam.nl        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	*routine(void *arg)
 		if (eating(philo))
 			break ;
 		philo->nbofeat--;
+		if (philo->nbofeat == 0)
+			break ;
 		if (sleeping(philo))
 			break ;
 		if (thinking(philo))
@@ -85,7 +87,7 @@ int	starting(t_param *param)
 	while (i < param->nb_philos)
 	{
 		if (pthread_create(&param->philos[i].thread, NULL,
-			routine, &param->philos[i]))
+				routine, &param->philos[i]))
 		{
 			param->nb_philos = i + 1;
 			break ;
