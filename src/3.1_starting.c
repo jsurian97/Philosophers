@@ -14,20 +14,16 @@
 
 int	check_death(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->param->mutex_dying);
+	if (philo->param->dying != 0)
+	{
+		pthread_mutex_unlock(&philo->param->mutex_dying);
+		return (1);
+	}
 	if (getime(philo->param->start) - philo->start_meal > philo->param->t_died)
 	{
-		pthread_mutex_lock(&philo->param->mutex_dying);
+		print(philo, "is dead");
 		philo->param->dying = philo->id_philos;
-		pthread_mutex_unlock(&philo->param->mutex_dying);
-	}
-	pthread_mutex_lock(&philo->param->mutex_dying);
-	if (philo->param->dying != -1 || philo->param->dying == -2)
-	{
-		if (philo->param->dying != -2)
-		{
-			print(philo, "is dead");
-			philo->param->dying = -2;
-		}
 		pthread_mutex_unlock(&philo->param->mutex_dying);
 		return (1);
 	}
@@ -73,3 +69,23 @@ int	sleep_and_eat(t_philo *philo, time_t start_action)
 	}
 	return (0);
 }
+
+/*int	check_death(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->param->mutex_dying);
+	if (getime(philo->param->start) - philo->start_meal > philo->param->t_died
+		&& philo->param->dying == -1)
+		philo->param->dying = philo->id_philos;
+	if (philo->param->dying != -1 || philo->param->dying == -2)
+	{
+		if (philo->param->dying != -2)
+		{
+			philo->param->dying = -2;
+			print(philo, "is dead");
+		}
+		pthread_mutex_unlock(&philo->param->mutex_dying);
+		return (1);
+	}
+	pthread_mutex_unlock(&philo->param->mutex_dying);
+	return (0);
+}*/

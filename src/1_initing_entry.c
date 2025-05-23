@@ -77,6 +77,8 @@ int	filling(t_param *param, int argc, char **argv)
 	else
 		param->nboftimes = -2;
 	param->start = getime(0) + 10;
+	param->dying = 0;
+	param->print = 0;
 	return (testing(param));
 }
 

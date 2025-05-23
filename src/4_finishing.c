@@ -12,17 +12,17 @@
 
 #include "main.h"
 
-int	finishing(t_philo *philo)
+int	finishing(t_param *param)
 {
 	int	i;
 
 	i = 0;
-	while (i < philo->param->nb_philos)
+	while (i < param->nb_philos)
 	{
-		pthread_mutex_destroy(&philo->param->philos[i].mutex_fork);
+		pthread_mutex_destroy(&param->philos[i].mutex_fork);
 		i++;
 	}
-	pthread_mutex_destroy(&philo->param->mutex_dying);
-	pthread_mutex_destroy(&philo->param->mutex_print);
+	pthread_mutex_destroy(&param->mutex_dying);
+	pthread_mutex_destroy(&param->mutex_print);
 	return (0);
 }

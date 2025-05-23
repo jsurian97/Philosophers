@@ -84,8 +84,12 @@ int	starting(t_param *param)
 	i = 0;
 	while (i < param->nb_philos)
 	{
-		pthread_create(&param->philos[i].thread, NULL,
-			routine, &param->philos[i]);
+		if (pthread_create(&param->philos[i].thread, NULL,
+			routine, &param->philos[i]))
+		{
+			param->nb_philos = i + 1;
+			break ;
+		}
 		i++;
 	}
 	i = 0;

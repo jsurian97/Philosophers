@@ -23,41 +23,42 @@
 
 struct	s_param;
 
-typedef struct	s_philo
+typedef struct s_philo
 {
-	int				id_philos;				//ok
-	time_t			start_meal;				//ok
+	int				id_philos;
+	time_t			start_meal;
 	int				nbofeat;
-	pthread_t		thread;					//ok
-	int				fork;					//ok
-	pthread_mutex_t	mutex_fork;				//ok
-	struct s_param	*param;					//ok
+	pthread_t		thread;
+	int				fork;
+	pthread_mutex_t	mutex_fork;
+	struct s_param	*param;
 }	t_philo;
 
-typedef struct s_param						//init
+typedef struct s_param
 {
-	int				nb_philos;				//ok
-	time_t			t_died;		//ms		//ok
-	time_t			t_eat;		//ms		//ok
-	time_t			t_sleep;	//ms		//ok
-	long			nboftimes;				//ok
-	time_t			start;		//ms		//ok
-	t_philo 		philos[200];			//
-	pthread_mutex_t	mutex_dying;			//
-	int				dying;					//
-	pthread_mutex_t	mutex_print;			//
+	int				nb_philos;
+	time_t			t_died;
+	time_t			t_eat;
+	time_t			t_sleep;
+	long			nboftimes;
+	time_t			start;
+	t_philo			philos[200];
+	pthread_mutex_t	mutex_dying;
+	int				dying;
+	pthread_mutex_t	mutex_print;
+	int				print;
 }	t_param;
 
-int	initing_entry(t_param *param, int argc, char **argv);
-int	initing_philos(t_param *param);
-int	starting(t_param *param);
-int	finishing(t_philo *philo);
+int		initing_entry(t_param *param, int argc, char **argv);
+int		initing_philos(t_param *param);
+int		starting(t_param *param);
+int		finishing(t_param *param);
 
 //starting 3.1
-int	check_death(t_philo *philo);
-int	take_fork(t_philo *philo, int i_forks);
-int	pose_fork(t_philo *philo, int i_forks);
-int	sleep_and_eat(t_philo *philo, time_t start_action);
+int		check_death(t_philo *philo);
+int		take_fork(t_philo *philo, int i_forks);
+int		pose_fork(t_philo *philo, int i_forks);
+int		sleep_and_eat(t_philo *philo, time_t start_action);
 
 //utils
 int		philosynchro(t_philo *philo);

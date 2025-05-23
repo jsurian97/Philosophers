@@ -19,8 +19,8 @@ int	main(int argc, char **argv)
 	if (initing_entry(&param, argc, argv))
 		return (0);
 	if (initing_philos(&param))
-		return (0);
+		return (1);
 	if (starting(&param))
-		return (finishing(&param.philos[0]));
-	return (finishing(&param.philos[0]));
+		return (finishing(&param));
+	return (finishing(&param));
 }

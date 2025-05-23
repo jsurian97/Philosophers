@@ -22,8 +22,10 @@ int	initing_philos(t_param *param)
 	if (pthread_mutex_init(&param->mutex_print, NULL))
 		return (1);
 	if (pthread_mutex_init(&param->mutex_dying, NULL))
+	{
+		pthread_mutex_destroy(&param->mutex_print);
 		return (1);
-	param->dying = -1;
+	}
 	while (i < param->nb_philos)
 	{
 		param->philos[i].id_philos = i;
@@ -31,7 +33,10 @@ int	initing_philos(t_param *param)
 		param->philos[i].nbofeat = param->nboftimes;
 		param->philos[i].fork = 0;
 		if (pthread_mutex_init(&param->philos[i].mutex_fork, NULL))
+		{
+			param->nb_philos = i + 1;
 			return (1);
+		}
 		param->philos[i].param = param;
 		i++;
 	}
