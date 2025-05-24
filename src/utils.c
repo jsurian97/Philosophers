@@ -30,13 +30,16 @@ time_t	getime(time_t start)
 	return ((tv.tv_usec / 1000 + tv.tv_sec * 1000) - start);
 }
 
-int	print(t_philo *philo, char *message)
+int	print(t_philo *philo, char *message, int last)
 {
 	pthread_mutex_lock(&philo->param->mutex_print);
-	if (message[4] == 'd')
-		philo->param->print = 1;
 	if (philo->param->print)
+	{
+		pthread_mutex_unlock(&philo->param->mutex_print);
 		return (1);
+	}
+	if (last)
+		philo->param->print = last;
 	printf("%ld %d %s\n", getime(philo->param->start),
 		philo->id_philos + 1, message);
 	pthread_mutex_unlock(&philo->param->mutex_print);

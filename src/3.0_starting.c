@@ -31,9 +31,9 @@ int	eating(t_philo *philo)
 	}
 	if (check_death(philo))
 		return (1);
-	print(philo, "is eating");
+	print(philo, "is eating", 0);
 	philo->start_meal = getime(philo->param->start);
-	if (sleep_and_eat(philo, getime(philo->param->start)))
+	if (sleep_and_eat(philo, getime(philo->param->start), philo->param->t_eat))
 		return (1);
 	pose_fork(philo, right);
 	pose_fork(philo, left);
@@ -44,8 +44,8 @@ int	sleeping(t_philo *philo)
 {
 	if (check_death(philo))
 		return (1);
-	print(philo, "is sleeping");
-	if (sleep_and_eat(philo, getime(philo->param->start)))
+	print(philo, "is sleeping", 0);
+	if (sleep_and_eat(philo, getime(philo->param->start), philo->param->t_sleep))
 		return (1);
 	return (0);
 }
@@ -54,7 +54,7 @@ int	thinking(t_philo *philo)
 {
 	if (check_death(philo))
 		return (1);
-	print(philo, "is thinking");
+	print(philo, "is thinking", 0);
 	return (0);
 }
 

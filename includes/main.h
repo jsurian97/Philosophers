@@ -58,11 +58,11 @@ int		finishing(t_param *param);
 int		check_death(t_philo *philo);
 int		take_fork(t_philo *philo, int i_forks);
 int		pose_fork(t_philo *philo, int i_forks);
-int		sleep_and_eat(t_philo *philo, time_t start_action);
+int		sleep_and_eat(t_philo *philo, time_t start_action, time_t sleep_or_eat);
 
 //utils
 int		philosynchro(t_philo *philo);
 time_t	getime(time_t start);
-int		print(t_philo *philo, char *message);
+int		print(t_philo *philo, char *message, int last);
 
 #endif
